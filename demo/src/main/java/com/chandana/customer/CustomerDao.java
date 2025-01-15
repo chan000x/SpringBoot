@@ -1,0 +1,11 @@
+package com.chandana.customer;
+
+import java.util.List;
+import java.util.Optional;
+
+
+// DAO Layer
+public interface CustomerDao {
+    List<Customer> selectAllCustomers();
+    Optional<Customer> selectCustomerById(Integer id);
+}
