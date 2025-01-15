@@ -13,11 +13,10 @@ public class CustomerService {
     private final CustomerDao customerDao;
 
     
-
+   // @Autowired // this anotation used to dependancy inject in previous springboot version and no longer need it.
     public CustomerService(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
-
 
 
     public List<Customer> getAllCustomers(){
