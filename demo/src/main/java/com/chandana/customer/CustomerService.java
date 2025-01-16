@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.chandana.exception.ResourceNotFound;
+
 
 // Business Layer
 
@@ -24,9 +26,10 @@ public class CustomerService {
     }
 
     public Customer getCustomer(Integer id){
-        return customerDao.selectCustomerById(id).orElseThrow(
-            ()-> new IllegalArgumentException("customer with id [$s] not found ".formatted(id))
-        );
+        return customerDao.selectCustomerById(id)
+        .orElseThrow(
+            ()-> new ResourceNotFound("customer with id [$s] not found ".formatted(id)
+            ));
     }
 
 }
