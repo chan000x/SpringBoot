@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication(scanBasePackages = "com.chandana.customer")
-public class Main { 
+public class Main {  
    
     public static void main(String[] args){
        // CustomerService customerService = new CustomerService(new CustomerDataAccessService());
