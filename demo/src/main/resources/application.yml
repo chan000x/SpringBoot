@@ -1,7 +1,8 @@
 server:
-  port: 8080
+  port: 8080 # port address in localhost login. ex: http://localhost:8080/api/v1/customers/2
   error:
-    include-message: always
+    include-message: always # to display the error message when exception occured in API call.
+    # the message being passed to exception call function
 
 spring:
   main:
