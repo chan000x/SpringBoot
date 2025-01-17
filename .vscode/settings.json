@@ -16,5 +16,6 @@
       "password": "34221719",
       "connectionTimeout": 30
     }
-  ]
+  ],
+  "java.compile.nullAnalysis.mode": "disabled"
 }

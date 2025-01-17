@@ -1,9 +1,21 @@
 server:
-  port: 8080 # port address in localhost login. ex: http://localhost:8080/api/v1/customers/2
+  port: 8080 # Port address for localhost. Ex: http://localhost:8080/api/v1/customers/2
   error:
-    include-message: always # to display the error message when exception occured in API call.
-    # the message being passed to exception call function
+    include-message: always # Display error message when an exception occurs in an API call.
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5332/customers
+    username: postgres
+    password: 34221719
+  jpa:
+    hibernate:
+      ddl-auto: create-drop # Create and destroy schema after execution. Use 'update' to persist data.
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: false
+    open-in-view: false # used to avoid warning This is a general warning. If you are not performing database queries in the view layer, you can safely ignore it.
   main:
     web-application-type: servlet
