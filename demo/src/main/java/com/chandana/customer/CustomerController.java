@@ -7,10 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 //  This is the API Layer
 @RestController  
+@RequestMapping("api/v1/customers") // safely  remove path from getMapping, POST mapping.
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -21,18 +25,23 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    // @GetMapping("api/v1/customers") //this one and requestmapping is same.
-    @RequestMapping(path = "api/v1/customers", method = RequestMethod.GET)
+   @GetMapping // Automatically path assigned because of requestmapping annotation in class.
     public List<Customer> getCustomers(){
         return customerService.getAllCustomers();
     }
 
 
-    @GetMapping("api/v1/customers/{customerId}") 
+    @GetMapping("{customerId}") 
     public Customer getCustomer(
         @PathVariable("customerId") Integer customerId){
 
          return customerService.getCustomer(customerId);
         }
+   
+    @PostMapping
+    public void registerCustomer(
+        @RequestBody CustomerRegistrationRequest request){
+        customerService.addCustomer(request); // @Requestbody retrieves the json object from the post body client sent.
+    }
 
 }
