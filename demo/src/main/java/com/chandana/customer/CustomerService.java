@@ -2,6 +2,7 @@ package com.chandana.customer;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.chandana.exception.ResourceNotFound;
@@ -16,7 +17,7 @@ public class CustomerService {
 
     
    // @Autowired // this anotation used to dependancy inject in previous springboot version and no longer need it.
-    public CustomerService(CustomerDao customerDao) {
+    public CustomerService(@Qualifier("jpa") CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
 

@@ -34,4 +34,26 @@ Enter PostgreSQL Shell insde the container : docker exec -it <container_name> ps
 
 Restart PostgreSQL Container : docker restart <container_name>
 
+To access to a database : psql -U <username> -d <database_name>
+
+List the all the databases : \l 
+
+To access a specific database use the : \c 
+
+To see the all the tables in database : \dt 
+
+To list tables along with system tables : \dt *
+
+To view the structure of a specific table : \d <tables_name>
+
+To view all relations : \d 
+
+To list tables : SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';
+
+To describe table columns :  SELECT column_name, data_type, is_nullable 
+                             FROM information_schema.columns 
+                             WHERE table_name = '<table_name>';
+
+
+
 

@@ -1,14 +1,52 @@
 package com.chandana.customer;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+
+@Entity
 public  class Customer{
-    private Integer id;
+    @Id
+    @SequenceGenerator(
+        name = "customer_id_sequence",
+        sequenceName = "customer_id_sequence"
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "customer_id_sequence"
+    )
+    private Integer id;  // id set to primary key and it is value start from 1 to bigint.
+
+    @Column(
+        nullable = false  // this will add constrains to the when connecting to the database postgres.
+    )
     private String name;
+
+    @Column(
+        nullable = false  // this will add constrains to the when connecting to the database postgres.
+    )
     private String email;
+
+    @Column(
+        nullable = false  // this will add constrains to the when connecting to the database postgres.
+    )
     private Integer age;
 
     
     public Customer() {
     }
+
+    
+    public Customer(String name, String email, Integer age) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
+
+
     public Customer(Integer id, String name, String email, Integer age) {
         this.id = id;
         this.name = name;

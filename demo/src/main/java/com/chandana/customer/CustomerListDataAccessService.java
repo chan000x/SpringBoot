@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 
 // DataBase Connection for Data Retrieve
 
-@Repository
-public class CustomerDataAccessService implements CustomerDao {
+@Repository("list")
+public class CustomerListDataAccessService implements CustomerDao {
 
      // db for now
     private static List<Customer> customers;
