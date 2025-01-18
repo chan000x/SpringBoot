@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.chandana.exception.DuplicateResourceException;
-import com.chandana.exception.ResourceNotFound;
+import com.chandana.exception.ResourceNotFoundException;
 
 
 // Business Layer
@@ -30,7 +30,7 @@ public class CustomerService {
     public Customer getCustomer(Integer id){
         return customerDao.selectCustomerById(id)
         .orElseThrow(
-            ()-> new ResourceNotFound("customer with id [%s] not found ".formatted(id)
+            ()-> new ResourceNotFoundException("customer with id [%s] not found ".formatted(id)
             ));
     }
 
@@ -50,4 +50,12 @@ public class CustomerService {
        customerDao.insertCustomer(customer);
     }
 
+    public void deleteCustomerById(Integer customerId){
+        if(!customerDao.existsPersonWithId(customerId)){
+            throw new ResourceNotFoundException(
+                "customer with id [%s] not found".formatted(customerId)
+            );
+        }
+        customerDao.deleteCustomerById(customerId);
+    }
 }
