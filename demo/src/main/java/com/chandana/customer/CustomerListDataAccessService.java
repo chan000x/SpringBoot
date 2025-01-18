@@ -83,4 +83,28 @@ public class CustomerListDataAccessService implements CustomerDao {
                 */
     }
 
+
+    @Override
+    public void updateCustomer(Customer customer) {
+        // Integer customerId = customer.getId();
+        // customers.stream()
+        // .filter(c -> c.getId().equals(customerId))
+        // .findFirst()
+        // .ifPresent(           
+        //      existingCustomer -> {
+        //     // Update the existing customer's fields
+        //     if (customer.getName() != null) {
+        //         existingCustomer.setName(customer.getName());
+        //     }
+        //     if (customer.getEmail() != null) {
+        //         existingCustomer.setEmail(customer.getEmail());
+        //     }
+        //     if (customer.getAge() != null) {
+        //         existingCustomer.setAge(customer.getAge());
+        //     }
+        // });
+        // or below method do the same thing like this
+        customers.add(customer);
+    }
+
 }

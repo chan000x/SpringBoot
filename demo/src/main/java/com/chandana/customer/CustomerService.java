@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.chandana.exception.ChangeNotFoundException;
 import com.chandana.exception.DuplicateResourceException;
 import com.chandana.exception.ResourceNotFoundException;
+import com.chandana.exception.UserNotFoundException;
 
 
 // Business Layer
@@ -58,4 +60,44 @@ public class CustomerService {
         }
         customerDao.deleteCustomerById(customerId);
     }
+
+    public void editCustomer(Integer customerId, 
+                CustomerEditRequest request) {
+        // Fetch the customer from the database
+        Customer customer = customerDao.selectCustomerById(customerId)
+            .orElseThrow(() -> new UserNotFoundException(
+                "Customer id [%s] not found".formatted(customerId)
+            ));
+    
+        boolean change = false;
+        // Update only the fields that are non-null
+        if (request.name() != null && !request.name().equals(customer.getName())) {
+            customer.setName(request.name());
+            change = true;
+        }
+        if (request.email() != null && !request.email().equals(customer.getEmail())) {
+            if(customerDao.existsPersonWithEmail(request.email())){
+                throw new DuplicateResourceException(
+                    "Email already taken"
+                );
+            }
+            customer.setEmail(request.email());
+            change = true;
+        }
+        if (request.age() != null && !request.age().equals(customer.getAge())) {
+            customer.setAge(request.age());
+            change = true;
+        }
+    
+        // Save the updated customer back to the database
+        if (change) { 
+            customerDao.updateCustomer(customer);
+        } else {
+            throw new ChangeNotFoundException(
+                "No data was changed"
+            );
+        }
+    }
+    
+
 }

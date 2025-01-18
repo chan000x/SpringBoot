@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -49,4 +50,12 @@ public class CustomerController {
         @PathVariable("customerId") Integer customerId){
             customerService.deleteCustomerById(customerId);
         }
+
+        @PutMapping("{customerId}")
+        public void editCustomer(
+            @RequestBody CustomerEditRequest request,
+            @PathVariable("customerId") Integer customerId){
+            customerService.editCustomer(customerId,request); // @Requestbody retrieves the json object from the post body client sent.
+        }
+    
 }
