@@ -6,17 +6,30 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(
+    name = "customer",
+    uniqueConstraints = {
+        @UniqueConstraint (
+            name = "customer_eamil_unique",
+            columnNames = "email"
+        )
+    }
+)
 public  class Customer{
     @Id
     @SequenceGenerator(
-        name = "customer_id_sequence",
-        sequenceName = "customer_id_sequence"
-    )
+        name = "customer_id_seq",
+        sequenceName = "customer_id_seq", // This must match with flyway migration sequence table name. Beacuse hibernate with spring data jpa does not used here to make schemas.  
+        initialValue = 1,
+        allocationSize = 1
+     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "customer_id_sequence"
+        generator = "customer_id_seq"
     )
     private Integer id;  // id set to primary key and it is value start from 1 to bigint.
 
@@ -26,8 +39,11 @@ public  class Customer{
     private String name;
 
     @Column(
-        nullable = false  // this will add constrains to the when connecting to the database postgres.
-    )
+        nullable = false // this will add constrains to the when connecting to the database postgres.
+        //unique = true // this constraint must present in sequence table in flyway. otherwise it does not work. ex : "customer_email_unique" UNIQUE CONSTRAINT
+        // the constraints defined the top of the table.
+   
+        )
     private String email;
 
     @Column(

@@ -12,11 +12,10 @@ spring:
     baseline-on-migrate: true
     baseline-version: 1
     enabled: false
-    check-location: false
 
   jpa:
     hibernate:
-      ddl-auto: none # Create and destroy schema after execution. Use 'update' to persist data.
+      ddl-auto: validate # validte that flyway created scheamas are correct. If not error get.
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
