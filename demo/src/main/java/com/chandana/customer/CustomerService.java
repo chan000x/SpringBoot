@@ -20,7 +20,7 @@ public class CustomerService {
 
     
    // @Autowired // this anotation used to dependancy inject in previous springboot version and no longer need it.
-    public CustomerService(@Qualifier("jpa") CustomerDao customerDao) {
+    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao) { // instead of jpa we used jdbc driver for sql commands.
         this.customerDao = customerDao;
     }
 

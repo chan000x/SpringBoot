@@ -20,7 +20,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show-sql: false
+    show-sql: true
     open-in-view: false # used to avoid warning This is a general warning. If you are not performing database queries in the view layer, you can safely ignore it.
   main:
     web-application-type: servlet
