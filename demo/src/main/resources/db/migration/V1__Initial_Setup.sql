@@ -1,9 +1,9 @@
--- CREATE TABLE customer (
---     id BIGSERIAL PRIMARY KEY, -- Automatically creates a sequence and assigns it to the id column.
---     name TEXT NOT NULL,
---     email TEXT NOT NULL,
---     age INT NOT NULL
--- );
+CREATE TABLE customer (
+    id BIGSERIAL PRIMARY KEY, -- Automatically creates a sequence and assigns it to the id column.
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    age INT NOT NULL
+);
 
 
 -- CREATE SEQUENCE customer_id_sequence;
